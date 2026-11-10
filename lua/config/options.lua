@@ -1,5 +1,6 @@
 -- 基础选项
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -16,5 +17,4 @@ if vim.env.DISPLAY or vim.env.WAYLAND_DISPLAY then
   vim.opt.clipboard = 'unnamedplus'
 end
 
--- 运行时自带插件：停止操作后自动清除搜索高亮
-vim.cmd('packadd! nohlsearch')
+
