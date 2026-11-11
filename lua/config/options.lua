@@ -12,6 +12,11 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 
+-- 分屏
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+vim.opt.termguicolors = true
 -- 仅在存在图形/终端剪贴板时启用；SSH、无显示环境下不设置，避免 yank 报错
 if vim.env.DISPLAY or vim.env.WAYLAND_DISPLAY then
   vim.opt.clipboard = 'unnamedplus'
