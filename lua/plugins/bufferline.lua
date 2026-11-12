@@ -9,6 +9,9 @@ return {
     opts = {
         options = {
             mode = 'buffers',
+            offsets = {
+                { filetype = 'NvimTree', text = 'Explorer', highlight = 'Directory', separator = true },
+            },
             numbers = 'ordinal',
             diagnostics = 'nvim_lsp',
             show_buffer_close_icons = true,

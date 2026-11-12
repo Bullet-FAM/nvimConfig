@@ -5,7 +5,12 @@
 return {
     'saghen/blink.cmp',
     version = 'v1.*',
-    event = 'InsertEnter',
+    dependencies = {
+        "rafamadriz/friendly-snippets"
+    },
+    -- 不要懒加载：blink 加载时会通过 vim.lsp.config('*') 注入 LSP capabilities，
+    -- 如果等到 InsertEnter 才加载，先启动的 LSP client 就拿不到 snippet / resolve 能力了
+    lazy = false,
     opts = {
         -- 默认会从 GitHub Releases 下载预编译 fuzzy 二进制（不需要 cargo）
         -- 下载失败会静默回退 Lua 实现，功能一样、只是大项目里稍慢
