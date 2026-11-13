@@ -18,9 +18,9 @@ return {
 
         keymap = {
             preset = 'default', -- 默认 C-n/C-p 选择、C-y 确认
-            ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-            ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-            ['<CR>'] = { 'accept', 'fallback' },
+            ['<C-n>'] = { 'select_next', 'snippet_forward', 'fallback' },
+            ['<C-p>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+            ['<Tab>'] = { 'accept', 'fallback' },
             ['<C-e>'] = { 'hide', 'fallback' },
         },
 
