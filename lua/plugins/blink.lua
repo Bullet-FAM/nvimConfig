@@ -3,10 +3,10 @@
 -- 直接跑会报 "blink.cmp v2 requires saghen/blink.lib"。
 -- 这里固定 v1 稳定版：lazy 会把这份 clone checkout 到 v1.10.0，自包含、开箱即用。
 return {
-    'saghen/blink.cmp',
-    version = 'v1.*',
+    "saghen/blink.cmp",
+    version = "v1.*",
     dependencies = {
-        "rafamadriz/friendly-snippets"
+        "rafamadriz/friendly-snippets",
     },
     -- 不要懒加载：blink 加载时会通过 vim.lsp.config('*') 注入 LSP capabilities，
     -- 如果等到 InsertEnter 才加载，先启动的 LSP client 就拿不到 snippet / resolve 能力了
@@ -14,25 +14,25 @@ return {
     opts = {
         -- 默认会从 GitHub Releases 下载预编译 fuzzy 二进制（不需要 cargo）
         -- 下载失败会静默回退 Lua 实现，功能一样、只是大项目里稍慢
-        fuzzy = { implementation = 'prefer_rust' },
+        fuzzy = { implementation = "prefer_rust" },
 
         keymap = {
-            preset = 'default', -- 默认 C-n/C-p 选择、C-y 确认
-            ['<C-n>'] = { 'select_next', 'snippet_forward', 'fallback' },
-            ['<C-p>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-            ['<Tab>'] = { 'accept', 'fallback' },
-            ['<C-e>'] = { 'hide', 'fallback' },
+            preset = "default", -- 默认 C-n/C-p 选择、C-y 确认
+            ["<C-n>"] = { "select_next", "snippet_forward", "fallback" },
+            ["<C-p>"] = { "select_prev", "snippet_backward", "fallback" },
+            ["<Tab>"] = { "accept", "fallback" },
+            ["<C-e>"] = { "hide", "fallback" },
         },
 
         sources = {
-            default = { 'lsp', 'path', 'buffer', 'snippets' },
+            default = { "lsp", "path", "buffer", "snippets" },
         },
 
         completion = {
             documentation = { auto_show = true, auto_show_delay_ms = 300 },
-            menu = { border = 'rounded' },
+            menu = { border = "rounded" },
         },
 
-        appearance = { nerd_font_variant = 'mono' },
+        appearance = { nerd_font_variant = "mono" },
     },
 }

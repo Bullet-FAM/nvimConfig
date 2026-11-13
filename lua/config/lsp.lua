@@ -75,9 +75,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('<leader>rn', vim.lsp.buf.rename, '[R]e[N]ame')
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
         map('<leader>ds', vim.lsp.buf.document_symbol, '[D]ocument [S]ymbols')
-        map('<leader>f', function()
-            vim.lsp.buf.format({ async = true })
-        end, '[F]ormat buffer')
+        -- 格式化统一交给 conform.nvim（见 lua/plugins/conform.lua）。
+        -- 不要在这里再映射 <leader>f：buffer-local 映射会盖掉 conform 的全局键。
     end,
 })
 
