@@ -1,15 +1,15 @@
 return {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
     dependencies = {
-        'nvim-lua/plenary.nvim',
-        'nvim-tree/nvim-web-devicons',   -- 你已经有了
-        'MunifTanjim/nui.nvim',
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons", -- 你已经有了
+        "MunifTanjim/nui.nvim",
     },
-    cmd = 'Neotree',
+    cmd = "Neotree",
     keys = {
-        { '<leader>e', '<cmd>Neotree toggle<cr>', desc = '文件树: 开关' },
-        { '<leader>o', '<cmd>Neotree focus<cr>', desc = '文件树: 聚焦' },
+        { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "文件树: 开关" },
+        { "<leader>o", "<cmd>Neotree focus<cr>", desc = "文件树: 聚焦" },
     },
     opts = {
         filesystem = {

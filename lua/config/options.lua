@@ -23,3 +23,7 @@ if vim.env.DISPLAY or vim.env.WAYLAND_DISPLAY then
 end
 
 vim.opt.showmode = false
+
+-- 搜索：用 ripgrep 驱动 :grep / :lgrep，结果进 quickfix
+vim.opt.grepprg = "rg --vimgrep --smart-case --hidden --glob=!.git/*"
+vim.opt.grepformat = "%f:%l:%c:%m"

@@ -30,6 +30,10 @@ return {
             jsonc = { 'prettier' },
             yaml = { 'prettier' },
             markdown = { 'prettier' },
+            html = { 'prettier' },
+            css = { 'prettier' },
+            scss = { 'prettier' },
+            less = { 'prettier' },
         },
         formatters = {
             -- 全局约定是 4 空格缩进，把两个默认不吃这套的 formatter 对齐
