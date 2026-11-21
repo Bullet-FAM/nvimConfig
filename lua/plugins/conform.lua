@@ -24,11 +24,13 @@ return {
             -- python 故意不列出：走 lsp_format = 'fallback'，
             -- 由 pylsp（内部自带 autopep8 / black / yapf）处理。
             -- 以后装了 ruff 再换成 python = { 'ruff_format' } 即可。
+            rust = { 'rustfmt' },
             c = { 'clang-format' },
             cpp = { 'clang-format' },
             json = { 'jq' },
             jsonc = { 'prettier' },
             yaml = { 'prettier' },
+            toml = { 'taplo' },
             markdown = { 'prettier' },
             html = { 'prettier' },
             css = { 'prettier' },

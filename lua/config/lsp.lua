@@ -102,6 +102,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         map("<leader>ds", vim.lsp.buf.document_symbol, "[D]ocument [S]ymbols")
         -- 格式化统一交给 conform.nvim（见 lua/plugins/conform.lua）。
         -- 不要在这里再映射 <leader>f：buffer-local 映射会盖掉 conform 的全局键。
+        map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+        map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
     end,
 })
 
@@ -116,7 +118,7 @@ end, { desc = "下一个诊断" })
 
 -- CSS / SCSS / LESS：mason 装的 css-lsp
 -- 注意 cssls 只有在 snippetSupport 开启时才给补全，blink 在启动时已经注入，不用额外处理
-vim.lsp.config('cssls', {
+vim.lsp.config("cssls", {
     settings = {
         css = { validate = true },
         scss = { validate = true },
@@ -126,7 +128,7 @@ vim.lsp.config('cssls', {
 -- enable 交给 mason-lspconfig 的 automatic_enable，这里不要再写 vim.lsp.enable('cssls')
 
 -- HTML：mason 装的 html-lsp，内置 css / javascript 内嵌语言支持
-vim.lsp.config('html', {
+vim.lsp.config("html", {
     settings = {
         html = {
             suggest = { html5 = true },
@@ -137,10 +139,36 @@ vim.lsp.config('html', {
 
 -- ESLint：只做 lint / 规则修复，格式化仍归 conform + prettier
 -- 依赖 mason 的 eslint-lsp 包（提供 vscode-eslint-language-server）
-vim.lsp.config('eslint', {
+vim.lsp.config("eslint", {
     settings = {
         -- 从被打开文件所在目录去找 eslint 配置，monorepo 下更准确
-        workingDirectory = { mode = 'location' },
+        workingDirectory = { mode = "location" },
     },
 })
-vim.lsp.enable('eslint')
+vim.lsp.enable("eslint")
+
+-- Rust：mason 安装的 rust-analyzer
+-- 格式化交给 conform 的 rustfmt（见 lua/plugins/conform.lua）
+vim.lsp.config("rust_analyzer", {
+    settings = {
+        ["rust-analyzer"] = {
+            -- 全部 feature 参与分析，条件编译分支里的补全才完整
+            cargo = { allFeatures = true },
+            -- 保存时用 clippy 检查（工具链里已有 cargo-clippy）
+            check = { command = "clippy" },
+            inlayHints = { bindingModeHints = { enable = false } },
+        },
+    },
+})
+vim.lsp.enable("rust_analyzer")
+
+-- TOML：mason 安装的 taplo
+-- schema 校验/补全走 SchemaStore，关联规则可以在项目里用 .taplo.toml 覆盖
+vim.lsp.config("taplo", {
+    settings = {
+        evenBetterToml = {
+            schema = { enabled = true },
+        },
+    },
+})
+vim.lsp.enable("taplo")

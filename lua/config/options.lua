@@ -27,3 +27,9 @@ vim.opt.showmode = false
 -- 搜索：用 ripgrep 驱动 :grep / :lgrep，结果进 quickfix
 vim.opt.grepprg = "rg --vimgrep --smart-case --hidden --glob=!.git/*"
 vim.opt.grepformat = "%f:%l:%c:%m"
+
+-- rustup 的工具链只在交互式 shell 里通过 ~/.cargo/env 进 PATH，
+-- 这里兜底，避免从桌面/非交互环境启动 nvim 时找不到 cargo、rustfmt
+if vim.fn.isdirectory(vim.fn.expand('~/.cargo/bin')) == 1 then
+    vim.env.PATH = vim.fn.expand('~/.cargo/bin') .. ':' .. vim.env.PATH
+end
