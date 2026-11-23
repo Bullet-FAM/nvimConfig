@@ -4,7 +4,8 @@
 
 -- 诊断显示（0.11 起 virtual_text 默认开启，这里只是调样式）
 vim.diagnostic.config({
-    virtual_text = { spacing = 2, prefix = "●" },
+    -- 行内渲染交给 tiny-inline-diagnostic.nvim（见 lua/plugins/tiny-inline-diagnostic.lua）
+    virtual_text = false,
     signs = true,
     underline = true,
     update_in_insert = false,
@@ -27,6 +28,9 @@ vim.lsp.config("bashls", {
 vim.lsp.enable("bashls")
 
 -- clangd：系统安装，手动 enable；cmd / filetypes / root_markers 由 nvim-lspconfig 提供
+vim.lsp.config("clangd", {
+    cmd = { "clangd", "--header-insertion=never" },
+})
 vim.lsp.enable("clangd")
 
 -- 下面三个由 mason-lspconfig 自动 enable（见 lua/plugins/mason-lspconfig.lua），
@@ -172,3 +176,11 @@ vim.lsp.config("taplo", {
     },
 })
 vim.lsp.enable("taplo")
+
+-- 汇编：mason 安装的 asm-lsp
+-- 兼容 GAS/NASM/Go/MASM/ca65/AVR/FASM 语法，指令集支持 x86/x86_64/ARM/RISC-V/z80/AVR/6502
+-- nvim-lspconfig 默认只有 asm/vmasm，这里补上 nvim 识别出的 nasm filetype
+vim.lsp.config("asm_lsp", {
+    filetypes = { "asm", "nasm", "vmasm" },
+})
+vim.lsp.enable("asm_lsp")
